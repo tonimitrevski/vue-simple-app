@@ -1,37 +1,37 @@
 <template>
   <div class="image-list">
-    <ImageContainer v-for="image in images" v-bind:key="image.id" :image="image"/>
+    <ImageBox
+      v-for="image in images"
+      v-bind:key="image.id"
+      :image="image"
+      @click.native="openImageInModal(image.download_url)"/>
   </div>
 </template>
 
 <script>
-import ImageContainer from '@/components/images/image-container/ImageContainer.vue'
+import ImageBox from '@/components/images/image-container/ImageBox.vue'
 
 export default {
   name: 'ImageList',
   components: {
-    ImageContainer
+    ImageBox
   },
   props: {
     images: Array
+  },
+  methods: {
+    openImageInModal(imageUrl) {
+      this.$emit('imageClickEvent', imageUrl);
+    }
   }
+
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  .image-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
 </style>

@@ -5,7 +5,7 @@ export default {
       axios.get(url, {
         params: data
       })
-          .then(response => func(response))
+          .then(response => func(response.data))
           .catch(error => this.handleError(error));
     },
     handleError (error) {
